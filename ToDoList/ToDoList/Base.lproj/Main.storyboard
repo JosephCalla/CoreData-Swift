@@ -49,6 +49,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="cyo-l3-bcB"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="wZo-RW-2zc"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -60,7 +64,16 @@
                             <constraint firstItem="4Ve-f4-Yau" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="zwD-pH-VR3"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="dqb-Lr-Q5f"/>
+                    <navigationItem key="navigationItem" title="Title" id="dqb-Lr-Q5f">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="baN-B6-5fe">
+                            <connections>
+                                <action selector="buttonAction:" destination="BYZ-38-t0r" id="TvN-5S-NcG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="table" destination="4Ve-f4-Yau" id="229-0d-nTS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -87,6 +100,7 @@
     </scenes>
     <resources>
         <image name="note" catalog="system" width="128" height="107"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
