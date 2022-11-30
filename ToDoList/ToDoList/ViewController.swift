@@ -59,7 +59,6 @@ class ViewController: UIViewController {
             print(error.localizedDescription)
         }
     }
-    
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
@@ -82,7 +81,35 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Palomear la tarea
+        if table.cellForRow(at: indexPath)?.accessoryType == .checkmark {
+            table.cellForRow(at: indexPath)?.accessoryType = .none
+        } else {
+            table.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        }
+        
+        // Editar coredata
+        listTask[indexPath.row].done = !listTask[indexPath.row].done
+        
+        save()
+        
+        // Deseleccionar la tarea
+        table.deselectRow(at: indexPath, animated: true)
+    }
     
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let actionRemove = UIContextualAction(style: .normal, title: "Eliminar") { [self] _, _, _ in
+            contexto.delete(listTask[indexPath.row])
+            
+            listTask.remove(at: indexPath.row)
+            
+            save()
+        }
+        
+        actionRemove.backgroundColor = .red
+        return UISwipeActionsConfiguration(actions: [actionRemove])
+    }
     
 }
 
